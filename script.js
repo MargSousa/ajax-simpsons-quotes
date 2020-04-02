@@ -1,19 +1,20 @@
 
  let oneQuoteUrl = `https://simpsons-quotes-api.herokuapp.com/quotes`;
+ let quote = "";
+ let name = "";
+ let image = "";
+ let characterDirection = "";
 
- axios.get(oneQuoteUrl)
+
+ function newQuote() {
+  axios.get(oneQuoteUrl)
     .then(function(response) { return response.data ;})
     .then(function(simpsons) {
     
-      let quote = simpsons[0].quote;
-      let name = simpsons[0].character;
-      let image = simpsons[0].image;
-      let characterDirection = simpsons[0].characterDirection;
-      
-      console.log(quote);
-      console.log(name);
-      console.log(image);
-      console.log(characterDirection);
+      quote = simpsons[0].quote;
+      name = simpsons[0].character;
+      image = simpsons[0].image;
+      characterDirection = simpsons[0].characterDirection;
 
       // Build a block of HTML
 
@@ -26,3 +27,11 @@
       document.querySelector('#simpsons').innerHTML = newSimpson;
 
     });
+}
+
+newQuote();
+
+function newQuoteButton(event) {
+  console.log("click");
+  newQuote();
+}
